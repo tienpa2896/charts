@@ -1,4 +1,4 @@
 fullnameOverride: "bgs-report-service"
 image:
   repository: 767398054143.dkr.ecr.ap-southeast-1.amazonaws.com/report-service
-  tag: develop-9d100f66 
+  tag: develop-18b18783  

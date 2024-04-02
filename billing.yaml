@@ -1,4 +1,4 @@
 fullnameOverride: "bgs-billing-service"
 image:
   repository: 767398054143.dkr.ecr.ap-southeast-1.amazonaws.com/billing-service
-  tag: develop-b24f98e2   
+  tag: develop-b24f98e2 
