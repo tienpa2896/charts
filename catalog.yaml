@@ -1,4 +1,0 @@
-fullnameOverride: "bgs-catalog-service"
-image:
-  repository: 767398054143.dkr.ecr.ap-southeast-1.amazonaws.com/bgs-catalog
-  tag: develop-cc67dd46 

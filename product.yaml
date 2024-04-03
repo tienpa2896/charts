@@ -1,4 +1,0 @@
-fullnameOverride: "bgs-product-service"
-image:
-  repository: 767398054143.dkr.ecr.ap-southeast-1.amazonaws.com/bgs-product
-  tag: develop-a0fae48e  

@@ -1,0 +1,4 @@
+fullnameOverride: "bgs-payment-service"
+image:
+  repository: 767398054143.dkr.ecr.ap-southeast-1.amazonaws.com/bgs-payment-service
+  tag: develop-5af51a71  

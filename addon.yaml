@@ -1,4 +1,0 @@
-fullnameOverride: "bgs-addon-service"
-image:
-  repository: 767398054143.dkr.ecr.ap-southeast-1.amazonaws.com/addons
-  tag: develop-9e356990  
