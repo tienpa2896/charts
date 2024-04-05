@@ -1,0 +1,22 @@
+{{- if .Values.components.admin.enabled -}}
+apiVersion: v1
+kind: Service
+metadata: {{ $fullname := printf "%s-%s" .Release.Name "admin" | trunc 63 | trimSuffix "-" }}
+  name: {{ $fullname }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.fullnameOverride }}
+    app.kubernetes.io/component: admin
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  type: {{ .Values.components.admin.service.type }}
+  ports:
+  - port: {{ .Values.components.admin.service.ports.http }}
+    targetPort: {{ .Values.components.admin.containerPorts.http }}
+    protocol: TCP
+    name: http
+  selector:
+    app.kubernetes.io/instance: {{ .Values.fullnameOverride }}
+    app.kubernetes.io/component: admin
+{{- end -}}

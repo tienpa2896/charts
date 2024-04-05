@@ -1,0 +1,102 @@
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride: "bgs-seller-service"
+
+components:
+  admin:
+    enabled: true
+
+    image:
+      registry: 767398054143.dkr.ecr.ap-southeast-1.amazonaws.com
+      repository: bgs-seller-service
+      tag: develop
+
+    # apiGatewayServer: bgs-admin-gateway-web.dev-bgs-01:80
+
+    replicaCount: 1
+
+    containerPorts:
+      http: 80
+
+    service:
+      type: ClusterIP
+      ports:
+        http: 80
+
+    resources:
+      requests: {}
+      limits: {}
+ 
+ingress:
+  enabled: true
+  ingressClassName: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/proxy-buffers: "8 128k"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "256k"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-headers-hash-max-size: "512"
+    kubernetes.io/tls-acme: "true"
+    argocd.argoproj.io/sync-wave: "2"
+  hosts:
+    - bgs-seller-dev.30usd.com
+  tls:
+    - hosts:
+        - bgs-seller-dev.30usd.com
+      secretName: bgs-seller-dev.30usd.com-tls
+
+api:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hostname: bgs-seller-dev.30usd.com
+    extraPaths:
+      - path: /report/api/v3
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: kong-kong-proxy
+            port: 80
+      - path: /api/v1/store-channels
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: kong-kong-proxy
+            port: 80
+      - path: /asp/api/v2
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: bgs-asp-service
+            port: 8080
+      - path: /api/v1
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: kong-kong-proxy
+            port: 80
+      - path: /pspfulfill/api/v2
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: api-bgs.30usd.com
+            port: 80
+      - path: /psp
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: seller-web-admin
+            port: 80
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-passthrough: "true"
+    nginx.ingress.kubernetes.io/proxy-buffers: "8 128k"
+    nginx.ingress.kubernetes.io/proxy-buffer-size: "256k"
+    nginx.ingress.kubernetes.io/proxy-body-size: "0"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "600"
+    nginx.ingress.kubernetes.io/proxy-headers-hash-max-size: "512"
+    kubernetes.io/tls-acme: "true"

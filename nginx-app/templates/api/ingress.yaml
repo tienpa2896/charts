@@ -1,0 +1,31 @@
+{{- if .Values.api.ingress.enabled -}}
+{{ $adminServiceName := printf "%s" .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: {{ $fullname := printf "%s" .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
+  name: {{ $fullname }}
+  labels:
+    app.kubernetes.io/instance: {{ .Values.fullnameOverride }}
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  annotations:
+  {{- range $key, $value := .Values.api.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+  {{- end }}
+spec:
+  ingressClassName: {{ .Values.api.ingress.ingressClassName }}
+  rules:
+    {{- if .Values.api.ingress.hostname }}
+    - host: {{ .Values.api.ingress.hostname }}
+      http:
+        paths:
+          {{- if .Values.api.ingress.extraPaths }}
+          {{- toYaml .Values.api.ingress.extraPaths | nindent 10 }}
+          {{- end }}
+    {{- end -}}
+  {{- if .Values.api.ingress.tls }}
+  tls:
+{{ toYaml .Values.api.ingress.tls | indent 4 }}
+  {{- end -}}
+{{- end -}}
