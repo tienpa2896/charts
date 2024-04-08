@@ -2,3 +2,6 @@ fullnameOverride: "bgs-payment-service"
 image:
   repository: 767398054143.dkr.ecr.ap-southeast-1.amazonaws.com/payment-service
   tag: develop-5af51a71  
+extraEnvVars:
+  - name: CLOUD_AWS_CREDENTIALS_ACCESS_KEY
+    value: "AKIA3FLD5BD76TR6QFON"
