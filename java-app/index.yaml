@@ -6,7 +6,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 2.19.1
-    created: "2024-04-08T15:53:13.5770503+07:00"
+    created: "2024-05-16T11:05:05.3282981+07:00"
     description: A Library Helm Chart for grouping common logic between bitnami charts.
       This chart is not deployable by itself.
     digest: 434ee126e8d208e963295648b0378c3b5ab93ff09b6ab9236ca8809c797f85bf
@@ -30,8 +30,40 @@ entries:
     version: 2.19.1
   java-app:
   - apiVersion: v2
+    appVersion: 1.16.1
+    created: "2024-05-16T11:05:05.3275479+07:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: A Helm chart for Kubernetes
+    digest: e517feca9399fa2b8d94aeb246f5ca9dac8066fa97954ff37c267da06a898517
+    name: java-app
+    type: application
+    urls:
+    - java-app-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: 1.16.1
+    created: "2024-05-16T11:05:05.3247576+07:00"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: A Helm chart for Kubernetes
+    digest: fd7744eb937a725604b93376be338338a5fe3945bec36994b06c97b8c89f3a0c
+    name: java-app
+    type: application
+    urls:
+    - java-app-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-08T15:53:13.5760141+07:00"
+    created: "2024-05-16T11:05:05.321661+07:00"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -47,7 +79,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-08T15:53:13.5739031+07:00"
+    created: "2024-05-16T11:05:05.3202177+07:00"
     description: A Helm chart for Kubernetes
     digest: e99f90578bc5afd57a8d665d47997fddb51b3054eeb31d47b1a48f7521026e8c
     name: java-app
@@ -57,7 +89,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2024-04-08T15:53:13.5728003+07:00"
+    created: "2024-05-16T11:05:05.3196461+07:00"
     description: A Helm chart for Kubernetes
     digest: dd3c0a9579757c5f3f52057e5ee264799466d608e7488266154391127c4c5e30
     name: java-app
@@ -65,4 +97,4 @@ entries:
     urls:
     - java-app-0.1.0.tgz
     version: 0.1.0
-generated: "2024-04-08T15:53:13.5693758+07:00"
+generated: "2024-05-16T11:05:05.3186043+07:00"
